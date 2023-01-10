@@ -1,0 +1,104 @@
+Golang:
+
+
+# Basic
+Trong Golang, chỉ cần khai báo biến mà k sử dụng cũng tạo lỗi k cho compile
+
+-> Cài đặt: tải và cài GO -> cmd: go version -> tải extension trong VSC làm IDE -> Code go
+Chạy với: go run <url to file>.go
+Build với: go build <url to file>.go -> ./<url to file>.go
+
+Fix lỗi "go.mod file not found in current directory or any parent directory":
+Chạy lệnh: go env -w GO111MODULE=off 
+=> GO111MODULE=off sẽ ép Go to behave the GOPATH way, even outside of GOPATH.
+
+-> 3 biến môi trường: GOROOT, GOPATH, PATH. 
+Trong đó GOROOT là nơi package GO được cài trên hệ thống.
+GOPATH là vị trí của thư mục project đang chạy
+PATH là truy cập toàn hệ thống, nó refer tới $GOPATH/bin
+
+-> constant
+-> Vòng for
+Vòng for k tham số sẽ chạy đến 1 mức nhất định, trong các ngôn ngữ khác thì đk terminate là rỗng tức vòng for sẽ chạy vô tận
+
+
+
+# Code cú pháp
+Full tut: https://www.w3schools.com/go/
+
+
+
+# Slices
+Chỉ được khởi tạo bằng := mà k được dùng var = 
+Nó có 2 cách khởi tạo là với hàm make or tạo rừ 1 array khác
+
+Khi gán giá trị thì ta vẫn có thể dùng = bth
+
+Capacity của slice khi tạo từ array được tính từ phần tử bắt đầu của array mà nó lấy và có thể grow tới cuối array. VD: arr[1,2,3,4] có slice [1:2] thì capacity là 3 và length là 1 vì nó chỉ có 1 phần tử là số 2, và có thể grow max tới số 4 là cuối array
+
+Khai báo biến không dùng cũng bắn hẳn error
+
+-> Convert từ slice số về string và từ string sang slice số để thao tác 
+-> Dựng webserver bằng golang
+
+
+
+# Array
+Array luôn phải xđ số lượng phần tử còn slice thì không cần.
+
+-> Array 2 chiều
+
+
+
+# Map
+Trong các ngôn ngữ lập trình k hỗ trợ duyệt 1 map theo thứ tự thì ta có cách là tạo ra list key vào 1 mảng. VD type string hay int rồi sort mảng rồi duyệt tuần tự mảng đó và lấy ra từng phần tử của map với key là giá trị từng phần tử mảng với map[element mảng]
+
+
+
+# Biến và kiểu dữ liệu
+uint8/16/32/64 - byte alias cho uint8
+int8/16/32/64 - rune alias cho int32
+float32/64
+complex64/128
+string, bool
+
+Khi dùng int, tùy hệ điều hành 32 bit dùng int32, hđh hỗ trợ 64 it sẽ dùng int64
+
+
+
+# Dùng Struct
+-> Trong Golang k có class nên phải dùng struct, nhưng method cho struct phải dùng receiver argument
+Muốn thay đổi giá tji của biến struct phải dùng con trỏ
+
+Dùng receiver argument method cho non struct type được
+
+
+# Con trỏ
+Cơ chế giống C++
+
+
+
+# Interface
+Cơ chế như OOP thuần
+
+
+
+# Go routines
+Golang có sẵn đa luồng, chỉ cần thêm vào từ khóa go đăng trước hàm muốn gọi bất đồng bộ. 
+Cơ chế: 1 function tồn tại đa luồng với các goroutine trong cùng 1 KG bộ nhớ. Bộ điều khiển của Go quản lý các goroutine sẽ phân phối và từng bộ xử lý logic, mỗi bộ xử lý logic đó được gắn với 1 thread hệ thống được tạo ra trước đó để thực thi các goroutine. Tức là 1 thread - 1 bộ xử lý logic - 1 nhóm các goroutine được xử lý. Bộ điều khiển quản lý các goroutine đó đã xử lý hết sẵn cái khó khăn của lập trình đa luồng. Khi chương trình stack k đủ, goroutine tự tăng kg stack lên
+
+Thread truyền thống có 1 vùng nhớ stack cố định để lưu trữ biến, tham số, địa chỉ hàm trả về => dễ stack overflow với CT gọi đệ quy sâu, lãng phí vùng nhớ nếu ct đơn giản
+
+-> Channel
+--> Có thể làm tham số truyền cho hàm
+
+-> Từ khóa defer
+
+-> Mutex
+
+
+
+# Other
+-> Làm sao để dựng được server từ code thuần. Điều này là impossible, các giao thức phức tạp mà muốn dựng bằng code thuần k dùng thư viện gì cả đều phải thao tác với phần cứng máy tính, mở port xong nhận request và gửi lại. Khi đó tầng thấp nhất đi chăng nữa như code bằng C cũng phải dùng các chức năng của hệ điều hành có sẵn vc gửi nhận request từ remote chứ làm tay mà k dùng đến các chức năng đó của hđh là impossible.
+Có lẽ các package bậc cao hơn cũng chỉ xuất phát từ đó và abstract sự phức tạp đi.
+

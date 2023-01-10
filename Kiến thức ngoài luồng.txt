@@ -1,0 +1,15 @@
+-> Go hay Golang là 1 ngôn ngữ rất mạnh phát triển tại google nhưng k là 1 phần của google mà là 1 sp open source. Cú pháp khá giống C++
+
+Định luật Moore cho rằng: số lượng bóng bán dẫn tăng gấp đôi sau mỗi 2 năm trong khi giá máy tính giảm 1 nửa. Tuy nhiên định luật này đang trở nên sai vì thêm bóng bán dẫn bắt đầu có giới hạn khi mà 1 vài thuộc tính của hạt quantum bắt đầu xuất hiện, vc thêm nhiều bóng bán dẫn khiến số lượng bóng thêm vào bắt đầu hỏng. 
+=> Do đó giải pháp là các nhà sx bắt đầu thêm nhiều lõi xử lý hơn cho CPU, ngày nay ta có quadcore và octacore CPU; Dùng hyper threading; Thêm cache và bộ xử lý. Nhưng các giải pháp đó cũng dần đi tới limit. Tức là chỉ dựa vào sự cải thiện của phần cứng kp là cách hay, GO đem lại giải pháp tạo ra các phần mềm hiệu quả hơn với Goroutine. 
+Thực tế các ngôn ngữ hiện đại như Python, Java phù hợp cho môi trường đơn luồng. Đúng là nó có xử lý đa luồng nhưng phải giải quyết vô số vấn đề như khóa luồng, race condition, deadlock với code rất rối. Vd trong java tạo 1 thread mới có thể tốn gần 1Mb bộ nhớ và nếu chạy hàng nghàn thread thì heap sẽ chịu 1 áp lực khổng lồ buộc phải shutdown. Thay vì v, Go được release vào 2009 khi mà bộ xử lý nhiều lõi đã có sẵn và các lập trình viên xd với ý định giữ concurrency làm tiêu chuẩn. Nó dùng goroutines thay cho thread nên chỉ tốn 2kb bộ nhớ ở heap 
+=> Ta có thể tạo ra hàng triệu goroutines thực hiện bất đông bộ bất cứ lúc nào.
+
+GO là ngôn ngữ biên dịch, được chạy trực tiếp bên dưới phần cứng như C++ có hiệu suất cao nhưng đơn giản hơn C++, nó có garbage collector, loại bỏ đi 1 số khái niệm rắc rối của OOP hiện đại như k có kế thừa, k có class hay object, code dễ maintain.
+
+Go phù hợp cho lập trình network service, đám mây, cần tới concurrency. Go có nhiều tính năng k có so với các ngôn ngữ khác như generic types. 
+
+
+-> 1 số sản phẩm nổi tiếng bởi Go như Docker, Kubernetes(1 dạng khá giống Docker)
+Thg dùng cho cloud, CICD, DevOps,..
+
